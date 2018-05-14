@@ -11,7 +11,7 @@ namespace MvcExample.Data
             
         }
 
-        public DbSet<Director> Directors { get; set; }
-        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

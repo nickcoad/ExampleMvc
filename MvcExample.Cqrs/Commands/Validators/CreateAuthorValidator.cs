@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace MvcExample.Cqrs.Commands.Validators
 {
-    public class CreateDirectorValidator : IValidator<CreateDirectorCommand>
+    public class CreateAuthorValidator : IValidator<CreateAuthorCommand>
     {
-        public (bool result, List<string> messages) Validate(CreateDirectorCommand dto)
+        public (bool result, List<string> messages) Validate(CreateAuthorCommand dto)
         {
             var messages = new List<string>();
 

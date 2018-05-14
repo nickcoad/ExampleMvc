@@ -2,11 +2,11 @@
 
 namespace MvcExample.Data.Entities
 {
-    public class Director : BaseEntity
+    public class Author : BaseEntity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public ICollection<Movie> Movies { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }
