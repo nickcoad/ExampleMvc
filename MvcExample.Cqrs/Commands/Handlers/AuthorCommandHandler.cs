@@ -7,7 +7,8 @@ using MvcExample.Data.Entities;
 namespace MvcExample.Cqrs.Commands.Handlers
 {
     public class AuthorCommandHandler :
-        ICommandHandler<CreateAuthorCommand>
+        ICommandHandler<CreateAuthorCommand>,
+        ICommandHandler<DeleteAuthorCommand>
     {
         private readonly DataContext _dbContext;
 

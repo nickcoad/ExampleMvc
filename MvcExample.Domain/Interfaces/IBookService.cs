@@ -7,7 +7,6 @@ namespace MvcExample.Domain.Interfaces
 {
     public interface IBookService
     {
-        IQueryable<BookDto> QueryBooks();
         Task CreateBook(CreateBookDto dto, Guid userId);
         Task DeleteBook(DeleteBookDto dto, Guid userId);
     }

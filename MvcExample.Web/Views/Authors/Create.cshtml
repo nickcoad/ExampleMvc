@@ -1,4 +1,4 @@
-﻿@model BooksCreateViewModel
+﻿@model AuthorsCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -8,13 +8,13 @@
 
 <form method="post">
     <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" />
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
     </div>
 
     <div class="form-group">
-        <label asp-for="ReleaseDate"></label>
-        <input asp-for="ReleaseDate" />
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
     </div>
 
     <button type="submit">Save</button>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MvcExample.Cqrs.Commands.Models;
 
 namespace MvcExample.Cqrs.Commands.Validators
 {
@@ -15,7 +16,7 @@ namespace MvcExample.Cqrs.Commands.Validators
             if (string.IsNullOrEmpty(dto.LastName))
                 messages.Add("Last name cannot be empty.");
 
-            return (messages.Any(), messages);
+            return (!messages.Any(), messages);
         }
     }
 }

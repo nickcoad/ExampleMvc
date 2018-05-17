@@ -1,7 +1,29 @@
-﻿
+﻿@model BooksIndexViewModel
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
 
+<a asp-controller="Books" asp-action="Create" class="btn btn-success">Create</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Release Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author.FirstName @book.Author.LastName</td>
+                <td>@book.ReleaseDate.ToString("d")</td>
+            </tr>
+        }
+    </tbody>
+</table>

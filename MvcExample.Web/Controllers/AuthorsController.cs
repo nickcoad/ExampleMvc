@@ -1,37 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MvcExample.Cqrs.Interfaces;
 using MvcExample.Cqrs.Queries.Models;
 using MvcExample.Domain.Interfaces;
-using MvcExample.Domain.Models.Books;
-using MvcExample.Web.Models.Books;
+using MvcExample.Domain.Models.Authors;
+using MvcExample.Web.Models.Authors;
 
 namespace MvcExample.Web.Controllers
 {
-    public class BooksController : Controller
+    public class AuthorsController : Controller
     {
         private readonly IQueryProcessor _queryProcessor;
-        private readonly IBookService _bookService;
+        private readonly IAuthorService _authorService;
 
-        public BooksController(
+        public AuthorsController(
             IQueryProcessor queryProcessor,
-            IBookService bookService)
+            IAuthorService authorService)
         {
             _queryProcessor = queryProcessor;
-            _bookService = bookService;
+            _authorService = authorService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var books = await _queryProcessor.Query<BooksQuery, BookDto>(new BooksQuery());
+            var authors = await _queryProcessor.Query<AuthorsQuery, AuthorDto>(new AuthorsQuery());
             
-            // TODO: Consider how to make this more decoupled
-            var viewModel = new BooksIndexViewModel
+            var viewModel = new AuthorsIndexViewModel
             {
-                Books = books
+                Authors = authors
             };
 
             return await Task.FromResult(View(viewModel));
@@ -40,24 +38,23 @@ namespace MvcExample.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var viewModel = new BooksCreateViewModel();
+            var viewModel = new AuthorsCreateViewModel();
             return await Task.FromResult(View(viewModel));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BooksCreateViewModel viewModel)
+        public async Task<IActionResult> Create(AuthorsCreateViewModel viewModel)
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
 
-            var newBook = new CreateBookDto
+            var newAuthor = new CreateAuthorDto
             {
-                AuthorId = viewModel.AuthorId,
-                Title = viewModel.Title,
-                ReleaseDate = viewModel.ReleaseDate
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName
             };
 
-            await _bookService.CreateBook(newBook, Guid.NewGuid());
+            await _authorService.CreateAuthor(newAuthor, Guid.NewGuid());
 
             return RedirectToAction(nameof(Index));
         }

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MvcExample.Cqrs.Commands.Exceptions;
+using MvcExample.Cqrs.Commands.Interfaces;
 using MvcExample.Cqrs.Commands.Validators;
 
 namespace MvcExample.Cqrs.Commands.Decorators
