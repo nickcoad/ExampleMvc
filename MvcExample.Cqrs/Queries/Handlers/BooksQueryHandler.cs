@@ -8,10 +8,12 @@ using MvcExample.Cqrs.Queries.Interfaces;
 using MvcExample.Cqrs.Queries.Models;
 using MvcExample.Data;
 using MvcExample.Data.Entities;
+using MvcExample.Domain.Interfaces;
 
 namespace MvcExample.Cqrs.Queries.Handlers
 {
     public class BooksQueryHandler<TResult> : IQueryHandler<BooksQuery, TResult>
+        where TResult : IMapsFrom<Book>
     {
         private readonly IMapper _mapper;
         private readonly DataContext _context;

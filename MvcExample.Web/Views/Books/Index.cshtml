@@ -1,29 +1,46 @@
 ﻿@model BooksIndexViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Books";
 }
 
-<h2>Index</h2>
+<h2>Books</h2>
 
 <a asp-controller="Books" asp-action="Create" class="btn btn-success">Create</a>
 
-<table>
-    <thead>
+@if (Model.Books == null || !Model.Books.Any())
+{
+    <p>
+        <em>No books to display.</em>
+    </p>
+}
+else
+{   
+    <table class="table">
+        <thead>
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Release Date</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var book in Model.Books)
         {
             <tr>
                 <td>@book.Title</td>
-                <td>@book.Author.FirstName @book.Author.LastName</td>
+                <td>@book.AuthorFirstName @book.AuthorLastName</td>
                 <td>@book.ReleaseDate.ToString("d")</td>
+                <td>
+                    <ul>
+                        @foreach (var otherBook in book.OtherBooksByAuthor)
+                        {
+                            <li>@otherBook.Title</li>
+                        }
+                    </ul>
+                </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+}
